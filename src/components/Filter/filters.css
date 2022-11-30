@@ -1,0 +1,30 @@
+.filters-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+}
+
+.filters-title-div{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.filters-title-div h4 {
+    margin-bottom: 0;
+}
+
+.filter-select {
+    border: 1px solid green;
+}
+
+.filter-categorys {
+    width: 90%;
+}
+
+input[type="radio"] {
+    display: none;
+  }

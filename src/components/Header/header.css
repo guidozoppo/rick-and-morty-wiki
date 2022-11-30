@@ -1,0 +1,26 @@
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 1.5rem;
+  }
+  
+  header .home-link {
+    cursor: pointer;
+  }
+  
+  header .home-link span {
+    color: blue;
+  }
+  
+  header .sections ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+  }
+  
+  header .sections ul li{
+    padding-left: 10px;
+    cursor: pointer;
+  }
