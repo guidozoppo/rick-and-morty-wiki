@@ -1,10 +1,12 @@
 import "./card.css";
+import { useNavigate } from "react-router-dom";
+import CardDetail from "./CardDetail";
 
-const PersonajeCard = ( { personaje, onClick } ) => {
-    const urlImg = personaje.image;
-    
-    const handleClick = (id) => {
-        onClick(id)
+const PersonajeCard = ( { personaje } ) => {   
+    const navigate = useNavigate();
+
+    const viewDetail = () => {
+        navigate(`/cardDetail/${personaje.id}`)
     }
 
     const detectarEstado = () => {
@@ -17,10 +19,11 @@ const PersonajeCard = ( { personaje, onClick } ) => {
         }
     }
 
+
     return (
-        <div className="card-div" onClick={handleClick(personaje.id)}>
+        <div className="card-div" onClick={viewDetail}>
             <div className="conteiner-img">
-                <img src={urlImg} alt="Imagen-Pj"></img>
+                <img src={personaje.image} alt="Imagen-Pj"></img>
             </div>
             <div className="description-div">
                 <div className={`badge bg-secondary`}>{detectarEstado()}</div>

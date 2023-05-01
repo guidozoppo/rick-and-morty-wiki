@@ -6,6 +6,7 @@ import Pagination from "../../components/Pagination/Pagination";
 
 import { useFetchPersonajesQuery } from "../../redux/api/personajes";
 import { useState } from "react";
+import Error from "../responses/Error";
 
 const Home = () => {
     const [search, setSearch] = useState("");
@@ -13,7 +14,7 @@ const Home = () => {
     const [species, setSpecies] = useState("");
     const [gender, setGender] = useState("");
     const [currentPage, setCurrenPage] = useState(1);
-    const { data, isLoading, isSuccess, isFetching, isError } = useFetchPersonajesQuery({currentPage, search, status, species, gender});
+    const { data, isLoading, isSuccess, isFetching, isError, error } = useFetchPersonajesQuery({currentPage, search, status, species, gender});
 
     const clearFilters = () => {
         setStatus("");
@@ -23,8 +24,7 @@ const Home = () => {
 
     const renderResults = () => {
         if (isError) {
-            console.log(isError)
-            return <div>There is nothing here</div>
+            return <Error message={error?.data?.error} />
         } else if(isLoading || isFetching) {
             return <div>Cargando</div>;
         } else if (isSuccess && data?.results) {
@@ -36,7 +36,7 @@ const Home = () => {
 
         <div>
             <Encabezado />
-            <Search setSearch={setSearch}/>
+            <Search setSearch={setSearch} title="Characters" searchCharacter={true}/>
             <div className="filter-results-div">
                 <Filters setStatus={setStatus} setSpecies={setSpecies} setGender={setGender} clearFilters={clearFilters}/>
                 <div className="results-div">

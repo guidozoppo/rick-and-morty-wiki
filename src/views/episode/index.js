@@ -2,14 +2,16 @@ import { useEffect, useState } from "react";
 import InputGroup from "../../components/Filter/category/InputGroup";
 import Encabezado from "../../components/Header/Header";
 import Results from "../../components/Results/Results";
+import Search from "../../components/Search/Search";
 import { useFetchEpisodesQuery } from "../../redux/api/episodes";
+import Error from "../responses/Error";
+import Loading from "../responses/Loading";
 import './episode.css';
 
 const Episode = () => {
   const [id, setID] = useState(1);
   const [personajes, setPersonajes] = useState();
-  const { data, isLoading, isSuccess, isFetching, isError } =
-    useFetchEpisodesQuery({ id });
+  const { data, isLoading, isSuccess, isFetching, isError, error } = useFetchEpisodesQuery({ id });
 
   useEffect(() => {
     (async function () {
@@ -23,17 +25,25 @@ const Episode = () => {
       }
     })();
   }, [id, data]);
+  
+  const renderContent = () => {
+    if(isError) {
+        return <Error message={error?.data?.error}/>
+    } else if(isLoading || isFetching) {
+        return <Loading message={"Cargando..."}/>
+    } else if (isSuccess) {
+        return <Results personajes={personajes} view="episode" />
+    }
+  }
 
   return (
     <div>
       <Encabezado />
-      <div>
-        <h1>titulo</h1>
-      </div>
-      <div className="container-gral">
+      <Search title={`Episode ${data?.id}: ${data?.name}`} subTitle={data?.air_date} searchCharacter={false}/>
+      <div className="filter-results-div">
         <InputGroup name={"Episode"} changeID={setID} total={51} />
         <div className="results-div">
-          <Results personajes={personajes} view="episode" />
+          {renderContent()}
         </div>
       </div>
     </div>

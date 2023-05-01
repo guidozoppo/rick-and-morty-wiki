@@ -22,3 +22,11 @@ code {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.list-group-item {
+  border: none;
+}
+
+.activado {
+  color: blue;
+}

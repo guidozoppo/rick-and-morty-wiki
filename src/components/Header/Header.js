@@ -4,21 +4,25 @@ import "./header.css";
 const Encabezado = () => {
     const navigate = useNavigate();
     
-    const navigateHome = (e) => {
+    const navigateTo = (e) => {
+        const elem = e?.target?.style;
+        console.log(elem.color)
+        elem.color += "blue";
+        console.log(elem.color)
         const destino = e.target.attributes.destino.value;
         navigate(`/${destino}`);
     }
 
     return (
         <header>
-            <div destino="" className="home-link" onClick={navigateHome}>
+            <div destino="" className="home-link" onClick={navigateTo}>
                 Rick & Morty <span destino="">Wiki</span>
             </div>
             <div className="sections">
-                <ul>
-                    <li destino="" onClick={navigateHome}>Characters</li>
-                    <li destino="episode" onClick={navigateHome}>Episode</li>
-                    <li destino="location" onClick={navigateHome}>Location</li>
+                <ul className="list-group">
+                    <li className="list-group-item" destino="" onClick={navigateTo}>Characters</li>
+                    <li className="list-group-item" destino="episode" onClick={navigateTo}>Episode</li>
+                    <li className="list-group-item" destino="location" onClick={navigateTo}>Location</li>
                 </ul>
             </div>
         </header>
