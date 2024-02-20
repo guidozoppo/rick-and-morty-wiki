@@ -1,6 +1,5 @@
 import "./card.css";
 import { useNavigate } from "react-router-dom";
-import CardDetail from "./CardDetail";
 
 const PersonajeCard = ( { personaje } ) => {   
     const navigate = useNavigate();
