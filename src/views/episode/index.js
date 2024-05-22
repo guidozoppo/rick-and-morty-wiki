@@ -6,13 +6,13 @@ import Search from "../../components/Search/Search";
 import { useFetchEpisodesQuery } from "../../redux/api/episodes";
 import Error from "../responses/Error";
 import Loading from "../responses/Loading";
-import './episode.css';
+import Footer from "../../components/Footer/Footer";
 
 const Episode = () => {
   const [id, setID] = useState(1);
   const [personajes, setPersonajes] = useState();
   const { data, isLoading, isSuccess, isFetching, isError, error } = useFetchEpisodesQuery({ id });
-
+  console.log(data)
   useEffect(() => {
     (async function () {
       if (data !== undefined) {
@@ -42,10 +42,11 @@ const Episode = () => {
       <Search title={`Episode ${data?.id}: ${data?.name}`} subTitle={data?.air_date} searchCharacter={false}/>
       <div className="filter-results-div">
         <InputGroup name={"Episode"} changeID={setID} total={51} />
-        <div className="results-div">
+        <>
           {renderContent()}
-        </div>
+        </>
       </div>
+      <Footer />
     </div>
   );
 };

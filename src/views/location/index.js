@@ -7,13 +7,14 @@ import Search from "../../components/Search/Search";
 import { useFetchLocationQuery } from "../../redux/api/location";
 import Error from "../responses/Error";
 import Loading from "../responses/Loading";
+import Footer from "../../components/Footer/Footer";
 
 const Location = () => {
     
     const [id, setID] = useState(1);
     const [personajes, setPersonajes] = useState();
     const { data, isLoading, isSuccess, isFetching, isError, error} = useFetchLocationQuery({id});
-  
+
     useEffect(() => {
         (async function () {
           if (data !== undefined) {
@@ -30,8 +31,10 @@ const Location = () => {
     const renderContent = () => {
         if(isError) {
             return <Error message={error?.data?.error}/>
-        } else if(isLoading || isFetching) {
-            return <Loading message={"Cargando..."}/>
+          } else if(isLoading || isFetching) {
+            return <Loading message={"Loading..."}/>
+          } else if (data?.residents.length === 0) {
+            return <Error message="Without results. Try another location"/>
         } else if (isSuccess) {
             return <Results personajes={personajes} view="episode" />
         }
@@ -43,10 +46,11 @@ const Location = () => {
             <Search title={`Location: ${data?.name}`} subTitle={`Type: ${data?.type}`} searchCharacter={false}/>
             <div className="filter-results-div">
                 <InputGroup name={"Location"} locationName={data?.name} changeID={setID} total={126} />
-                <div className="results-div">
+                <>
                     {renderContent()}
-                </div>
+                </>
             </div>
+            <Footer />
         </div>
     );
 }

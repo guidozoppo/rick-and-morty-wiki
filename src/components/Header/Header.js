@@ -6,9 +6,7 @@ const Encabezado = () => {
     
     const navigateTo = (e) => {
         const elem = e?.target?.style;
-        console.log(elem.color)
         elem.color += "blue";
-        console.log(elem.color)
         const destino = e.target.attributes.destino.value;
         navigate(`/${destino}`);
     }

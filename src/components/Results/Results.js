@@ -20,7 +20,9 @@ const Results = ( { personajes, view } ) => {
     }
 
     return (
-        renderResults()
+        <div className="results-div">
+            {renderResults()}
+        </div>
     );
 };
 

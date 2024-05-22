@@ -7,6 +7,8 @@ import Pagination from "../../components/Pagination/Pagination";
 import { useFetchPersonajesQuery } from "../../redux/api/personajes";
 import { useState } from "react";
 import Error from "../responses/Error";
+import Loading from "../responses/Loading";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
     const [search, setSearch] = useState("");
@@ -26,7 +28,7 @@ const Home = () => {
         if (isError) {
             return <Error message={error?.data?.error} />
         } else if(isLoading || isFetching) {
-            return <div>Cargando</div>;
+            return <Loading message={"Loading..."} />
         } else if (isSuccess && data?.results) {
             return <Results personajes={data} view="characters"/>
         }
@@ -37,16 +39,17 @@ const Home = () => {
         <div>
             <Encabezado />
             <Search setSearch={setSearch} title="Characters" searchCharacter={true}/>
-            <div className="filter-results-div">
+            <div className={`filter-results-div ${isLoading || isFetching || isError ? 'loading' : 'notLoading'}`}>
                 <Filters setStatus={setStatus} setSpecies={setSpecies} setGender={setGender} clearFilters={clearFilters}/>
-                <div className="results-div">
+                <>
                     {renderResults()}
-                </div>
+                </>
             </div>
             <Pagination
                 info={data}
                 setCurrenPage={setCurrenPage}
             />
+            <Footer />
         </div>
     );
 }

@@ -1,8 +1,8 @@
-
+import './Error.css'
 const Error = ( { message } ) => {
 
     return (
-        <div>
+        <div className="error-container">
             <h2>
                 {message}
             </h2>

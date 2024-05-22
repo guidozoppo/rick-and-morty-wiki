@@ -27,7 +27,7 @@ const CardDetail = ( ) => {
             console.log(data);
             return <Error message={error?.data?.error}/>
         } else if(isLoading || isFetching) {
-            return <Loading message={"Cargando..."} />
+            return <Loading message={"Loading..."} />
         } else if (isSuccess || data) {
             return (
                 <div>

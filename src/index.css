@@ -14,13 +14,14 @@ code {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.notLoading {
   align-items: flex-start;
 }
 
-.results-div {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+.loading {
+  align-items: center;
 }
 
 .list-group-item {
@@ -30,3 +31,17 @@ code {
 .activado {
   color: blue;
 }
+
+.results-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 70%;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+/* .input-group {
+  width: 30%;
+} */
