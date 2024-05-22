@@ -1,3 +1,30 @@
-.card-detail-div {
-    display: none;
+.cardDetail-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card-detail-container .content {
+    text-align: start;
+}
+
+.card-detail-container div img {
+    border: 2px solid #0b5ed7;
+    border-radius: 10px;
+}
+
+.render-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

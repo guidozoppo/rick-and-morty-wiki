@@ -3,6 +3,7 @@
     border-radius: 10px;
     margin: 10px;
     width: 25%;
+    cursor: pointer;
 }
 
 .card-div img {

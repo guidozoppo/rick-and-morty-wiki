@@ -5,6 +5,8 @@ import { useFetchPersonajesQuery } from '../../redux/api/personajes';
 import Error from '../../views/responses/Error';
 import Loading from '../../views/responses/Loading';
 import './cardDetail.css';
+import Encabezado from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 const CardDetail = ( ) => {
     const [personaje, setPersonaje] = useState();
@@ -23,14 +25,16 @@ const CardDetail = ( ) => {
     
     const renderContent = () => {
         if(isError) {
-            console.log(isError);
-            console.log(data);
             return <Error message={error?.data?.error}/>
         } else if(isLoading || isFetching) {
-            return <Loading message={"Loading..."} />
+            return (
+                <div className='render-loading'>
+                    <Loading message={"Loading..."} />
+                </div>
+            )
         } else if (isSuccess || data) {
             return (
-                <div>
+                <div className='card-detail-container'>
                     <div>
                         <h1>{personaje?.name}</h1>
                         <img src={personaje?.image} alt={personaje?.name}/>
@@ -52,14 +56,18 @@ const CardDetail = ( ) => {
                             <span className="fw-bold">Species: </span>
                             {personaje?.species}
                         </div>
-                </div>
+                    </div>
                 </div>
         )
         }
     } 
 
     return (
-        renderContent()
+        <section className='cardDetail-section'>
+            <Encabezado />
+            {renderContent()}
+            <Footer />
+        </section>
     )
 };
 
